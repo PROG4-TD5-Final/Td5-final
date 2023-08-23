@@ -5,6 +5,7 @@ import com.example.prog4.model.exception.BadRequestException;
 import com.example.prog4.repository.database1.PositionRepository;
 import com.example.prog4.repository.database1.entity.Phone;
 import com.example.prog4.repository.database1.entity.Position;
+import com.example.prog4.repository.database2.CnapsRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ public class EmployeeMapper {
     private PositionRepository positionRepository;
     private PhoneMapper phoneMapper;
 
+    private CnapsRepository repository;
     public com.example.prog4.repository.database1.entity.Employee toDomain(Employee employee) {
         try {
             List<Position> positions = new ArrayList<>();
@@ -42,7 +44,6 @@ public class EmployeeMapper {
                     .lastName(employee.getLastName())
                     .address(employee.getAddress())
                     .cin(employee.getCin())
-                    .cnaps(employee.getCnaps())
                     .registrationNumber(employee.getRegistrationNumber())
                     .childrenNumber(employee.getChildrenNumber())
                     // enums
@@ -78,7 +79,7 @@ public class EmployeeMapper {
                 .lastName(employee.getLastName())
                 .address(employee.getAddress())
                 .cin(employee.getCin())
-                .cnaps(employee.getCnaps())
+                .cnaps(repository.findCnapsEmployeesByEndToEndId(employee.getId()).getCnaps())
                 .registrationNumber(employee.getRegistrationNumber())
                 .childrenNumber(employee.getChildrenNumber())
                 // enums

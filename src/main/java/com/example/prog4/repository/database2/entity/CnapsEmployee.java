@@ -29,4 +29,7 @@ public class CnapsEmployee {
     private LocalDate entranceDate;
     private LocalDate departureDate;
     private Integer childrenNumber;
+
+    @Column(name = "end_to_end_id")
+    private String endToEndId;
 }

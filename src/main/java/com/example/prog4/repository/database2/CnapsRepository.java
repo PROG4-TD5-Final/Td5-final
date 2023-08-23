@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface CnapsRepository extends JpaRepository <CnapsEmployee, String> {
     Optional<CnapsEmployee> findByPersonalEmail(String personalEmail);
+    CnapsEmployee findCnapsEmployeesByEndToEndId(String id);
 }
